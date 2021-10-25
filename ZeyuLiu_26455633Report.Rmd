@@ -1,0 +1,22 @@
+---
+title: "Untitled"
+author: "Zeyu Liu"
+date: "13/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+pie_data <- data_all %>% 
+  group_by(SEVERITY) %>%
+  count(sort = TRUE) %>%
+   ungroup()
+pie_data <- pie_data %>%  mutate(prop = percent(n / sum(n)),
+                                 SEVERITY = as.factor(SEVERITY),
+                                 prop = as.factor(prop))
+```
+
